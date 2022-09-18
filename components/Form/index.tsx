@@ -65,7 +65,6 @@ export const Form = () => {
             e.preventDefault()
             SubmitForm()
         }
-
     }
 
     const SubmitForm = (): void => {
@@ -74,7 +73,7 @@ export const Form = () => {
     }
 
     return (
-        <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100 mt-16 mb-8 lg:mt-0">
+        <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100 mb-8 lg:mt-0">
             <div className="card-body">
                 <Header />
                 <div className="tabs mb-4">

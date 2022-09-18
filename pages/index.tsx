@@ -5,7 +5,7 @@ import { Notes } from '../components/Notes';
 const Home: NextPage = () => {
 
   return (
-    <div className="hero min-h-screen bg-base-200">
+    <div className="lg:hero min-h-screen bg-base-200 lg:pt-0 pt-6">
       <div className="py-0 hero-content flex-col lg:flex-row w-full">
         <Form />
         <Notes />
