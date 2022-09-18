@@ -5,7 +5,7 @@ import { SunIcon, MoonIcon } from "@heroicons/react/20/solid";
 
 export const Header = () => {
     const { systemTheme, theme, setTheme } = useTheme();
-    const [mounted, setMounted] = useState(false);
+    const [mounted, setMounted] = useState<boolean>(false);
 
     useEffect(() => {
         setMounted(true);

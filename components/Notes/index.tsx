@@ -7,7 +7,7 @@ import { noteType } from '../../types/notes';
 import { useNoteStore } from '../../store/useNotes';
 
 export const Notes = () => {
-    let [loading, setLoading] = useState(true);
+    const [loading, setLoading] = useState(true);
     const { addNotes, notes } = useNoteStore()
 
     const setNotesArray = (notes: noteType[]) => {
@@ -40,7 +40,7 @@ export const Notes = () => {
                                 <div className="text-center lg:text-left overflow-y-scroll h-[96vh] min-w-8">
                                     <div className='mx-8 py-6'>
                                         {
-                                            notes && notes.map(note => <Note key={note.id} id={note.id} noteContent={note.content} />)
+                                            notes && notes.map(note => <Note key={note.id} id={note.id} noteContent={note.content} file={note.file} />)
                                         }
                                     </div>
                                 </div >

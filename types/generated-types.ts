@@ -19,6 +19,8 @@ export interface paths {
           id?: parameters["rowFilter.notes.id"];
           created_at?: parameters["rowFilter.notes.created_at"];
           content?: parameters["rowFilter.notes.content"];
+          /** File location */
+          file?: parameters["rowFilter.notes.file"];
           /** Filtering Columns */
           select?: parameters["select"];
           /** Ordering */
@@ -72,6 +74,8 @@ export interface paths {
           id?: parameters["rowFilter.notes.id"];
           created_at?: parameters["rowFilter.notes.created_at"];
           content?: parameters["rowFilter.notes.content"];
+          /** File location */
+          file?: parameters["rowFilter.notes.file"];
         };
         header: {
           /** Preference */
@@ -89,6 +93,8 @@ export interface paths {
           id?: parameters["rowFilter.notes.id"];
           created_at?: parameters["rowFilter.notes.created_at"];
           content?: parameters["rowFilter.notes.content"];
+          /** File location */
+          file?: parameters["rowFilter.notes.file"];
         };
         body: {
           /** notes */
@@ -123,6 +129,11 @@ export interface definitions {
     created_at?: string;
     /** Format: character varying */
     content?: string;
+    /**
+     * Format: character varying
+     * @description File location
+     */
+    file?: string;
   };
 }
 
@@ -167,6 +178,11 @@ export interface parameters {
   "rowFilter.notes.created_at": string;
   /** Format: character varying */
   "rowFilter.notes.content": string;
+  /**
+   * Format: character varying
+   * @description File location
+   */
+  "rowFilter.notes.file": string;
 }
 
 export interface operations {}

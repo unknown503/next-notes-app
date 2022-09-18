@@ -1,14 +1,14 @@
 import create from 'zustand'
 import { noteType } from '../types/notes'
 
-interface NotesStates {
+interface NotesStateType {
     notes: noteType[] | [],
     addNotes: (notes: noteType[]) => void,
     insertNoteState: (note: noteType) => void,
     deleteNoteState: (id: number) => void
 }
 
-export const useNoteStore = create<NotesStates>((set) => ({
+export const useNoteStore = create<NotesStateType>((set) => ({
     notes: [],
     addNotes: (notes: noteType[]) => {
         set({ notes })
