@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useMemo, useState } from 'react'
 import { getNotes } from '../../lib/dbOperations'
 import { toast } from 'react-toastify';
 import { Note } from './Note'
@@ -15,9 +15,11 @@ export const Notes = () => {
         setLoading(false)
     }
 
+    const serverNotes = useMemo(async () => await getNotes(), [])
+
     useEffect(() => {
-        getNotes().then(setNotesArray).catch(toast.error)
-    }, [])
+        serverNotes.then(setNotesArray).catch(toast.error)
+    }, [serverNotes])
 
 
     return (
