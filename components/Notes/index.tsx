@@ -13,13 +13,13 @@ export const Notes = () => {
     const setNotesArray = useCallback((notes: noteType[]) => {
         addNotes(notes)
         setLoading(false)
-    }, [notes, addNotes])
+    }, [addNotes])
 
     const serverNotes = useMemo(async () => await getNotes(), [])
 
     useEffect(() => {
         serverNotes.then(setNotesArray).catch(toast.error)
-    }, [serverNotes])
+    }, [serverNotes, setNotesArray])
 
 
     return (
