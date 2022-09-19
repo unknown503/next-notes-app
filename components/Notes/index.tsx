@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from 'react'
+import React, { useCallback, useEffect, useMemo, useState } from 'react'
 import { getNotes } from '../../lib/dbOperations'
 import { toast } from 'react-toastify';
 import { Note } from './Note'
@@ -10,10 +10,10 @@ export const Notes = () => {
     const [loading, setLoading] = useState(true);
     const { addNotes, notes } = useNoteStore()
 
-    const setNotesArray = (notes: noteType[]) => {
+    const setNotesArray = useCallback((notes: noteType[]) => {
         addNotes(notes)
         setLoading(false)
-    }
+    }, [notes])
 
     const serverNotes = useMemo(async () => await getNotes(), [])
 

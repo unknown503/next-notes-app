@@ -13,8 +13,16 @@ export const Note = ({ id, noteContent, file }: NoteInfo) => {
     const { deleteNoteState } = useNoteStore()
     const fileName = file?.split("/")[1].split("_")[0]
 
-    const onClickButton = (text: string): void => {
-        toast.info(text);
+    const onClickButton = (text: string): any => toast.info(text);
+
+    const isUrl = (string: string): boolean => {
+        const pattern: RegExp = new RegExp('^(https?:\\/\\/)?' +
+            '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|' +
+            '((\\d{1,3}\\.){3}\\d{1,3}))' +
+            '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*' +
+            '(\\?[;&a-z\\d%_.~+=-]*)?' +
+            '(\\#[-a-z\\d_]*)?$', 'i');
+        return !!pattern.test(string);
     }
 
     const DownloadFile = async (): Promise<void> => {
@@ -30,17 +38,22 @@ export const Note = ({ id, noteContent, file }: NoteInfo) => {
         if (error) toast.error(`Error deleting: ${message}`)
         if (!error) toast.success("Note was deleted!")
     }
+    const TextClassName: string = "p-4 break-all prose max-w-none"
 
     return (
         <>
             <div className="flex flex-row justify-between">
-                <p className="p-4 break-all prose max-w-none" dangerouslySetInnerHTML={{ __html: noteContent || "" }}>
-                </p>
+                {
+                    isUrl(noteContent || "") ?
+                        <a href={noteContent} target='_blank' className={`${TextClassName} link`}>{noteContent}</a>
+                        :
+                        <p className={TextClassName} dangerouslySetInnerHTML={{ __html: noteContent || "" }}></p>
+                }
                 <div className="flex flex-row justify-center ">
                     {
                         file &&
                         <button className="min-w-6 pl-2" onClick={DownloadFile}>
-                                <div className="tooltip" data-tip={`Download ${fileName}`}>
+                            <div className="tooltip" data-tip={`Download ${fileName}`}>
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-7 h-7">
                                     <path strokeLinecap="round" strokeLinejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" />
                                 </svg>
