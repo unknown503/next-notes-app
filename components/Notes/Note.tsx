@@ -45,7 +45,7 @@ export const Note = ({ id, noteContent, file }: NoteInfo) => {
             <div className="flex flex-row justify-between">
                 {
                     isUrl(noteContent || "") ?
-                        <a href={noteContent} target='_blank' className={`${TextClassName} link`}>{noteContent}</a>
+                        <a href={noteContent} target='_blank' rel="noreferrer" className={`${TextClassName} link`}>{noteContent}</a>
                         :
                         <p className={TextClassName} dangerouslySetInnerHTML={{ __html: noteContent || "" }}></p>
                 }

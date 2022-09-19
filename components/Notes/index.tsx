@@ -13,7 +13,7 @@ export const Notes = () => {
     const setNotesArray = useCallback((notes: noteType[]) => {
         addNotes(notes)
         setLoading(false)
-    }, [notes])
+    }, [notes, addNotes])
 
     const serverNotes = useMemo(async () => await getNotes(), [])
 
