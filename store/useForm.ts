@@ -1,7 +1,7 @@
 import { ChangeEvent } from 'react'
 import create from 'zustand'
 
-type FileType = ChangeEvent<HTMLInputElement> | null 
+type FileType = /* File | null  */ChangeEvent<HTMLInputElement> | null 
 
 interface FormStateType {
     fileValue: FileType,

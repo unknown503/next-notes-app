@@ -49,7 +49,7 @@ export const Note = ({ id, noteContent, file }: NoteInfo) => {
                         :
                         <p className={TextClassName} dangerouslySetInnerHTML={{ __html: noteContent || "" }}></p>
                 }
-                <div className="flex flex-row justify-center ">
+                <div className="flex flex-row justify-center">
                     {
                         file &&
                         <button className="min-w-6 pl-2" onClick={DownloadFile}>

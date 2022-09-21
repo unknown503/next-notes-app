@@ -1,8 +1,9 @@
 import { noteType } from "../types/notes"
 import { supabase } from "./initSupabase"
 
-export const dbName: string = "notes"
-const bucket: string = "next-bucket"
+const shouldFetch: boolean = (process.env.NEXT_PUBLIC_FETCHING === "true") ? true : false
+export const dbName: string = shouldFetch ? "notes" : "fetching disabled"
+const bucket: string = shouldFetch ? "next-buckets" : "fetching disabled"
 
 interface ErrorType {
     error: boolean,

@@ -10,7 +10,7 @@ import { useFormStore } from "../../store/useForm";
 export const Form = () => {
     const [Note, setNote] = useState<string>("")
     const [DisableButton, setDisableButton] = useState<boolean>(false)
-    const [FileTab, setFileTab] = useState<boolean>(false)
+    const [FileTab, setFileTab] = useState<boolean>(true)
 
     const { insertNoteState } = useNoteStore()
     const { fileValue: fileState, fileNoteValue: noteState, clearValues } = useFormStore()
@@ -34,13 +34,17 @@ export const Form = () => {
     }
 
     const UploadFileNote = async (): Promise<void> => {
-        if (fileState === null || fileState.target.files === null || noteState === "") {
+        // if (fileState === null || noteState === "") {
+        console.log(fileState)
+            if (fileState === null || fileState.target.files === null || noteState === "") {
             toast.error("Content is empty!")
             return
         }
+        // console.log({ "archevo":fileState })
         const file = fileState.target.files[0]
 
         const { data, error } = await uploadFile(file)
+        // const { data, error } = await uploadFile(fileState)
         if (error) toast.error(error.message)
         if (!error) {
             const { note, error, message } = await insertNote(EditedNote(noteState), data.Key)
